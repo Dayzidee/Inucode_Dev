@@ -47,13 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.querySelector('.sticky-nav');
     if (!navbar) return;
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    
+    function updateNavbar() {
       if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(18, 18, 18, 0.95)';
-        navbar.style.backdropFilter = 'blur(15px)';
+        navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.98)';
       } else {
-        navbar.style.background = 'rgba(18, 18, 18, 0.8)';
-        navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.backgroundColor = 'rgba(18, 18, 18, 0.95)';
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNavbar);
+        ticking = true;
       }
     });
   }
@@ -99,30 +107,44 @@ document.addEventListener("DOMContentLoaded", function () {
         // Add dropdown animation class to headings
         heading.classList.add('dropdown-animation');
         
+        // Ensure heading is visible by default
+        heading.style.opacity = '1';
+        heading.style.visibility = 'visible';
+        
         gsap.fromTo(heading, 
           {
             opacity: 0,
-            y: -50,
-            rotationX: -15,
-            scale: 0.95
+            y: -30,
+            rotationX: -10,
+            scale: 0.98
           },
           {
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
-              end: "bottom 15%",
+              start: "top 80%",
+              end: "bottom 20%",
               toggleActions: "play reverse play reverse",
               refreshPriority: 1,
-              onEnter: () => heading.classList.add('visible'),
-              onLeave: () => heading.classList.remove('visible'),
-              onEnterBack: () => heading.classList.add('visible'),
-              onLeaveBack: () => heading.classList.remove('visible')
+              onEnter: () => {
+                heading.classList.add('visible');
+                heading.style.opacity = '1';
+              },
+              onLeave: () => {
+                heading.classList.remove('visible');
+              },
+              onEnterBack: () => {
+                heading.classList.add('visible');
+                heading.style.opacity = '1';
+              },
+              onLeaveBack: () => {
+                heading.classList.remove('visible');
+              }
             },
             opacity: 1,
             y: 0,
             rotationX: 0,
             scale: 1,
-            duration: 0.9,
+            duration: 0.6,
             ease: "power2.out",
           }
         );
@@ -660,21 +682,33 @@ document.addEventListener("DOMContentLoaded", function () {
   // --- ENHANCED SCROLL ANIMATIONS ---
   function initScrollAnimations() {
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -30px 0px",
+      threshold: 0.1,
+      rootMargin: "0px 0px -20px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        // Ensure element maintains base visibility
+        entry.target.style.opacity = entry.target.style.opacity || '1';
+        entry.target.style.visibility = 'visible';
+        
         if (entry.isIntersecting) {
           // Element is entering the viewport
           entry.target.classList.add("visible");
           entry.target.classList.remove("hidden");
         } else {
-          // Element is leaving the viewport - always remove visible and add hidden
-          // This ensures animations retrigger when scrolling back
-          entry.target.classList.remove("visible");
-          entry.target.classList.add("hidden");
+          // Element is leaving the viewport - only add hidden if it has animation classes
+          if (entry.target.classList.contains('animate-on-scroll') || 
+              entry.target.classList.contains('slide-in-left') || 
+              entry.target.classList.contains('slide-in-right') ||
+              entry.target.classList.contains('dropdown-animation') ||
+              entry.target.classList.contains('scale-fade') ||
+              entry.target.classList.contains('bounce-in') ||
+              entry.target.classList.contains('flip-in') ||
+              entry.target.classList.contains('stagger-animation')) {
+            entry.target.classList.remove("visible");
+            entry.target.classList.add("hidden");
+          }
         }
       });
     }, observerOptions);
@@ -708,17 +742,26 @@ document.addEventListener("DOMContentLoaded", function () {
       const animationClass = elementsToAnimate[selector];
       
       elements.forEach((el, index) => {
+        // Ensure base visibility
+        el.style.opacity = '1';
+        el.style.visibility = 'visible';
+        
         if (!el.classList.contains(animationClass)) {
           el.classList.add(animationClass);
         }
-        el.classList.add("hidden"); // Start as hidden
+        
+        // Only add hidden class if element supports animations
+        if (selector !== 'section' && selector !== 'footer') {
+          el.classList.add("hidden");
+        }
+        
         observer.observe(el);
         
         // Add staggered delay for elements in the same container
         if (el.parentElement) {
           const siblings = el.parentElement.querySelectorAll(selector);
           if (siblings.length > 1) {
-            el.style.transitionDelay = `${index * 0.1}s`;
+            el.style.transitionDelay = `${index * 0.08}s`;
           }
         }
       });
@@ -765,7 +808,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // --- ENSURE CONTENT VISIBILITY ---
+  function ensureContentVisibility() {
+    // Ensure all main content is visible
+    const mainContent = document.querySelectorAll('section, footer, .hero-section');
+    mainContent.forEach(element => {
+      element.style.opacity = '1';
+      element.style.visibility = 'visible';
+      element.style.display = element.style.display || 'block';
+    });
+  }
+
   // --- INITIALIZE ALL MODULES ---
+  ensureContentVisibility();
   initPreloader();
   initScrollProgress();
   initNavbarEffects();
@@ -777,4 +832,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initContactForm();
   initScrollAnimations();
   initGlowEffects();
+  
+  // Final visibility check after all initializations
+  setTimeout(ensureContentVisibility, 100);
 });
