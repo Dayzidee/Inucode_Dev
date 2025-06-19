@@ -38,31 +38,25 @@
     <div id="particle-background"></div>
 
     <nav class="sticky-nav">
-      <div class="logo">
-        <h3>Inucode Dev</h3>
+      <div class="nav-content">
+        <div class="logo">
+          <h3>Inucode Dev</h3>
+        </div>
+        <button class="hamburger" aria-label="Toggle Menu">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+        <div class="menu" id="nav-menu">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
-      <button
-        class="hamburger"
-        id="hamburger"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="nav-menu"
-      >
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </button>
-      <div class="menu" id="nav-menu">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <!-- Scroll Progress Indicator -->
-      <div class="scroll-progress" id="scroll-progress"></div>
     </nav>
 
     <!-- HERO SECTION -->
@@ -98,27 +92,27 @@
     </section>
 
     <!-- SERVICES SECTION -->
-    <section class="services" id="services">
-      <h2>Services</h2>
+    <section class="services animate-on-scroll" id="services">
+      <h2 class="fade-in-up">Services</h2>
       <div class="services-list">
-        <div class="service-card">
+        <div class="service-card animate-on-scroll">
           <i class="fas fa-laptop-code"></i>
           <h3>Web Development</h3>
           <p>Custom websites and web apps tailored to your business needs.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card animate-on-scroll">
           <i class="fas fa-mobile-alt"></i>
           <h3>Responsive Design</h3>
           <p>Mobile-first layouts for a seamless cross-device experience.</p>
         </div>
-        <div class="service-card">
+        <div class="service-card animate-on-scroll">
           <i class="fas fa-paint-brush"></i>
           <h3>UI/UX Design</h3>
           <p>
             Modern, intuitive interfaces that delight users and drive results.
           </p>
         </div>
-        <div class="service-card">
+        <div class="service-card animate-on-scroll">
           <i class="fas fa-server"></i>
           <h3>Backend Solutions</h3>
           <p>Robust APIs and scalable server-side logic for applications.</p>
@@ -142,10 +136,10 @@
     </section>
 
     <!-- PROJECTS SECTION -->
-    <section class="projects" id="projects">
-      <h2>Featured Projects</h2>
+    <section class="projects animate-on-scroll" id="projects">
+      <h2 class="fade-in-up">Featured Projects</h2>
       <div class="project-cards">
-        <div class="project-card">
+        <div class="project-card animate-on-scroll">
           <img src="images/Screenshot 2025-06-15 192030.png" alt="Project 1" />
           <div class="project-content">
             <h3>Portfolio Website</h3>
@@ -153,7 +147,7 @@
             <a href="#" class="btn-secondary">View Project</a>
           </div>
         </div>
-        <div class="project-card">
+        <div class="project-card animate-on-scroll">
           <img
             src="images/WhatsApp Image 2025-06-15 at 7.04.15 PM.jpeg"
             alt="Project 2"
@@ -168,7 +162,7 @@
             >
           </div>
         </div>
-        <div class="project-card">
+        <div class="project-card animate-on-scroll">
           <img src="images/hikeryan.png" alt="Project 3" />
           <div class="project-content">
             <h3>Blog Platform</h3>
@@ -236,29 +230,26 @@
     <!-- ABOUT ME SECTION -->
     <section class="about" id="about">
       <h2>About Me</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <p>
-            At <strong>Inucode Dev</strong>, I’m committed to staying ahead of
-            industry trends, ensuring every project reflects innovation and
-            high-quality craftsmanship. When I’m not coding, I enjoy exploring
-            new technologies and solving complex challenges to bring creative
-            ideas to life.
-          </p>
-          <h4>My core skills include:</h4>
-          <ul>
-            <li>
-              <i class="fas fa-check-circle"></i> Front-End with React, JS, HTML
-              & CSS
-            </li>
-            <li>
-              <i class="fas fa-check-circle"></i> Back-End with Node.js & Python
-            </li>
-            <li><i class="fas fa-check-circle"></i> Full-Stack Integration</li>
-            <li><i class="fas fa-check-circle"></i> UI/UX & Accessibility</li>
-          </ul>
-        </div>
+      <div class="content-text">
+        At <strong>Inucode Dev</strong>, I’m committed to staying ahead of
+        industry trends, ensuring every project reflects innovation and
+        high-quality craftsmanship. When I’m not coding, I enjoy exploring new
+        technologies and solving complex challenges to bring creative ideas to
+        life.
+        <h4>My core skills include:</h4>
+        <ul>
+          <li>
+            <i class="fas fa-check-circle"></i> Front-End with React, JS, HTML &
+            CSS
+          </li>
+          <li>
+            <i class="fas fa-check-circle"></i> Back-End with Node.js & Python
+          </li>
+          <li><i class="fas fa-check-circle"></i> Full-Stack Integration</li>
+          <li><i class="fas fa-check-circle"></i> UI/UX & Accessibility</li>
+        </ul>
       </div>
+      <a href="#" class="see-resume-btn">See Resume</a>
     </section>
 
     <!-- CONTACT SECTION -->
@@ -347,6 +338,19 @@
         <div class="chat-input">
           <a href="#contact" class="chat-contact-btn">Go to Contact Form</a>
         </div>
+
+        <!-- Inside your chat-container -->
+        <div class="chat-messages">
+          <!-- ...existing chat content... -->
+        </div>
+        <a
+          href="https://wa.me/2348101595840?text=Hi%20Sanni!%20I%20am%20interested%20in%20working%20with%20you."
+          class="chat-contact-btn"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
       </div>
     </div>
 
@@ -373,10 +377,21 @@
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li style="--i: 1">
+              <i class="fas fa-home"></i><a href="#home">Home</a>
+            </li>
+            <li style="--i: 2">
+              <i class="fas fa-user"></i><a href="#about">About</a>
+            </li>
+            <li style="--i: 3">
+              <i class="fas fa-cogs"></i><a href="#services">Services</a>
+            </li>
+            <li style="--i: 4">
+              <i class="fas fa-briefcase"></i><a href="#projects">Projects</a>
+            </li>
+            <li style="--i: 5">
+              <i class="fas fa-envelope"></i><a href="#contact">Contact</a>
+            </li>
           </ul>
         </div>
         <div class="footer-section">
