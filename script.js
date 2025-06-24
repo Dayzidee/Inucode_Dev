@@ -289,6 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => (status.textContent = ""), 4000);
     });
   }
+  
 
   // Chat widget
   const chatWidget = document.querySelector(".chat-widget");

@@ -617,6 +617,7 @@ section h2 {
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
+  padding: 2rem 0;
 }
 .project-card {
   background: var(--grey);
@@ -654,6 +655,19 @@ section h2 {
 .project-content .btn-secondary:hover {
   background: var(--gold);
   color: var(--black);
+}
+.project-cards a.project-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.project-cards a.project-card:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 /* Timeline */
@@ -1558,7 +1572,10 @@ footer {
     font-size: 2rem;
     text-align: center;
   }
-
+  .left-content {
+    margin-top: 55px;
+    text-align: center;
+  }
   .service-card,
   .project-card {
     max-width: 100%;
@@ -1578,7 +1595,11 @@ footer {
   }
 
   .project-card img {
-    height: 140px;
+    height: 120px;
+  }
+  .project-card {
+    max-width: 100%;
+    width: 100%;
   }
 
   .animated-name {
