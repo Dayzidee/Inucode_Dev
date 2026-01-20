@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #0a0a0a;
+  --dark-bg: #111111;
+  --grey: #1a1a1a;
+  --light-grey: #2a2a2a;
+  --gold: #ffd700;
+  --gold-dark: #b8860b;
+  --white: #ffffff;
+  --text-light: #cccccc;
+  --accent: #00d4ff;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 30px rgba(255, 215, 0, 0.4);
+  --shadow-hover: 0 15px 50px rgba(255, 215, 0, 0.3);
+}
+
+@layer base {
+  body {
+    @apply bg-black text-white font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-accent;
+  }
+}
+
+/* Custom Animations from Legacy */
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px var(--gold), 0 0 10px var(--gold), 0 0 15px var(--gold);
+  }
+  to {
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 30px var(--gold);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-custom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes rotateIn {
+  from { opacity: 0; transform: rotate(-200deg); }
+  to { opacity: 1; transform: rotate(0deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+/* Utility classes for animations */
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-pulse-custom {
+  animation: pulse-custom 2s infinite;
+}
+.animate-rotate-in {
+  animation: rotateIn 0.8s ease-out;
+}
+.animate-shimmer {
+  animation: shimmer 6s linear infinite;
+}
