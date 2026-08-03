@@ -30,7 +30,12 @@ export function ProjectCard({ project, className = "", aspectRatio = "aspect-[16
   }, [images.length]);
 
   return (
-    <div className={`project-card group cursor-pointer relative overflow-hidden bg-[#0a0a0a] ${className}`}>
+    <a 
+      href={project.link} 
+      target={project.link.startsWith("http") ? "_blank" : "_self"} 
+      rel="noopener noreferrer" 
+      className={`project-card group block cursor-pointer relative overflow-hidden bg-[#0a0a0a] ${className}`}
+    >
       <div className={`aspect-square md:${aspectRatio} overflow-hidden relative`}>
         {images.map((img, index) => (
           <Image 
@@ -46,7 +51,7 @@ export function ProjectCard({ project, className = "", aspectRatio = "aspect-[16
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500 z-10" />
       </div>
       
-      <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+      <div className="absolute inset-0 p-8 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-20">
         <span className="text-[10px] text-white/70 tracking-[0.2em] uppercase mb-3 font-medium">
           {project.category}
         </span>
@@ -61,6 +66,6 @@ export function ProjectCard({ project, className = "", aspectRatio = "aspect-[16
           <ArrowUpRight className="text-white" size={20} strokeWidth={1.5} />
         </div>
       </div>
-    </div>
+    </a>
   );
 }

@@ -63,7 +63,7 @@ export function GlobalSidenav({ variant, isOpen = false, onClose }: GlobalSidena
             <Link href="/privacy" className="text-[#a3a3a3] hover:text-white transition-colors" aria-label="Privacy">
               <Shield size={18} />
             </Link>
-            <Link href="/legal" className="text-[#a3a3a3] hover:text-white transition-colors" aria-label="Legal">
+            <Link href="/terms" className="text-[#a3a3a3] hover:text-white transition-colors" aria-label="Terms of Service">
               <Gavel size={18} />
             </Link>
           </div>
@@ -146,7 +146,7 @@ export function GlobalSidenav({ variant, isOpen = false, onClose }: GlobalSidena
             <Link href="/privacy" onClick={onClose} className="text-neutral-600 hover:text-white transition-colors" aria-label="Privacy">
               <Shield size={18} />
             </Link>
-            <Link href="/legal" onClick={onClose} className="text-neutral-600 hover:text-white transition-colors" aria-label="Legal">
+            <Link href="/terms" onClick={onClose} className="text-neutral-600 hover:text-white transition-colors" aria-label="Terms of Service">
               <Gavel size={18} />
             </Link>
           </div>
