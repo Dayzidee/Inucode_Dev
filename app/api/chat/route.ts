@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { PROJECTS, CAPABILITIES, MILESTONES, SERVICES } from "../../lib/data/portfolio";
+import { PROJECTS, CAPABILITIES, MILESTONES, SERVICES } from "../../../lib/data/portfolio";
 
 export const runtime = "edge";
 
@@ -60,7 +60,6 @@ export async function POST(req: Request) {
     const lastUserMessage = messages[messages.length - 1]?.content || "";
     const apiKey = process.env.NVIDIA_NIM_API_KEY;
 
-    // If API key is missing or fails on remote server, return smooth fallback immediately
     if (!apiKey) {
       const fallbackText = getSmartFallbackResponse(lastUserMessage);
       return new Response(`data: ${JSON.stringify({ choices: [{ delta: { content: fallbackText } }] })}\n\ndata: [DONE]\n\n`, {

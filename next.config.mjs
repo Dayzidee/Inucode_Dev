@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    // Optimize images & long-term asset caching TTL (Kota Skillz Latency Standard)
     images: {
         formats: ['image/avif', 'image/webp'],
         minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days image cache
@@ -25,13 +24,6 @@ const nextConfig = {
                 pathname: '/**',
             },
         ],
-    },
-    // Next.js App Router Client Memory Cache Stale Times
-    experimental: {
-        staleTimes: {
-            dynamic: 30,
-            static: 180,
-        },
     },
     async headers() {
         return [
