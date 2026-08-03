@@ -1,0 +1,52 @@
+"use client";
+
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export function Navbar() {
+  const pathname = usePathname();
+
+  return (
+    <nav className="fixed top-0 w-full z-[100] bg-transparent backdrop-blur-xl dark:bg-neutral-950/70 shadow-xl transition-all duration-300">
+      <div className="flex justify-between items-center px-8 py-6 w-full max-w-7xl mx-auto">
+        {/* Brand Logo */}
+        <Link href="/" className="text-xl font-black tracking-tighter text-white">
+          KOTA DEV
+        </Link>
+        
+        {/* Desktop Navigation Links */}
+        <div className="hidden md:flex gap-12">
+          {["Work", "Journal", "Archive", "Contact"].map((item) => {
+            const path = item === "Work" ? "/" : `/${item.toLowerCase()}`;
+            const isActive = pathname === path;
+            
+            return (
+              <Link
+                key={item}
+                href={path}
+                className={`font-['Inter'] font-bold tracking-tightest uppercase text-xs transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-105 ${
+                  isActive 
+                    ? "text-white" 
+                    : "text-neutral-400 hover:text-white"
+                }`}
+              >
+                {item}
+              </Link>
+            );
+          })}
+        </div>
+        
+        {/* Trailing Action */}
+        <div className="flex items-center gap-6">
+          <Link href="/contact" className="hidden md:block font-['Inter'] font-bold tracking-tightest uppercase text-xs text-white bg-white/10 px-6 py-2 rounded-lg hover:bg-white hover:text-on-primary transition-all duration-500">
+            Inquire
+          </Link>
+          <button aria-label="Toggle Menu" className="text-white hover:text-neutral-300 transition-colors md:hidden">
+            <Menu size={24} />
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}

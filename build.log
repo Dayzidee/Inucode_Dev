@@ -1,0 +1,65 @@
+
+> kota-dev@0.1.0 build
+> next build
+
+   ▲ Next.js 14.1.0
+
+   Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+Failed to compile.
+
+./app/globals.css:1:1
+Syntax error: /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css The `font-inter` class does not exist. If `font-inter` is a custom class, make sure it is defined within a `@layer` directive.
+
+> 1 | @tailwind base;
+    | ^
+  2 | @tailwind components;
+  3 | @tailwind utilities;
+
+./app/globals.css
+Syntax error: /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css The `text-on-surface` class does not exist. If `text-on-surface` is a custom class, make sure it is defined within a `@layer` directive. (2:1)
+
+  1 | @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
+> 2 | @tailwind base;
+    | ^
+  3 | @tailwind components;
+  4 | @tailwind utilities;
+
+    at tryRunOrWebpackError (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:311563)
+    at __webpack_require_module__ (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:131195)
+    at __nested_webpack_require_153754__ (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:130634)
+    at /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:131487
+    at symbolIterator (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+    at done (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/neo-async/async.js:1:14824)
+    at Hook.eval [as callAsync] (eval at create (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:13:28867), <anonymous>:15:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:13:26021)
+    at /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:130354
+    at symbolIterator (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/neo-async/async.js:1:14402)
+-- inner error --
+Syntax error: /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css The `text-on-surface` class does not exist. If `text-on-surface` is a custom class, make sure it is defined within a `@layer` directive. (2:1)
+
+  1 | @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap');
+> 2 | @tailwind base;
+    | ^
+  3 | @tailwind components;
+  4 | @tailwind utilities;
+
+    at Object.<anonymous> (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css:1:7)
+    at /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:915116
+    at Hook.eval [as call] (eval at create (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:13:28645), <anonymous>:7:1)
+    at Hook.CALL_DELEGATE [as _call] (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:13:25915)
+    at /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:131228
+    at tryRunOrWebpackError (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:311517)
+    at __webpack_require_module__ (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:131195)
+    at __nested_webpack_require_153754__ (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:130634)
+    at /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/webpack/bundle5.js:28:131487
+    at symbolIterator (/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+
+Generated code for /home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[2]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[12].use[3]!/home/sanniinuoluwadunsimi/Documents/Sanni Workspace/Inucode_Dev/app/globals.css
+
+Import trace for requested module:
+./app/globals.css
+
+
+> Build failed because of webpack errors
