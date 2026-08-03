@@ -20,6 +20,20 @@ const PAGES = [
 
 const BASE_URL = "http://localhost:3005";
 
+/** Resilient navigation: retries once on ERR_ABORTED (common with Next.js SSR) */
+async function gotoResilient(page: Page, url: string) {
+  try {
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
+  } catch (e: any) {
+    if (e?.message?.includes("ERR_ABORTED") || e?.message?.includes("detached")) {
+      await page.waitForTimeout(800);
+      await page.goto(url, { waitUntil: "domcontentloaded", timeout: 15000 });
+    } else {
+      throw e;
+    }
+  }
+}
+
 async function checkNoHorizontalScroll(page: Page) {
   return await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
 }
@@ -47,7 +61,7 @@ for (const viewport of ALL_VIEWPORTS) {
 
     for (const pg of PAGES) {
       test(`${pg.name} - no horizontal scroll`, async ({ page }) => {
-        await page.goto(`${BASE_URL}${pg.path}`, { waitUntil: "domcontentloaded" });
+        await gotoResilient(page, `${BASE_URL}${pg.path}`);
         await page.waitForTimeout(1000);
 
         const hasOverflow = await checkNoHorizontalScroll(page);
@@ -55,7 +69,7 @@ for (const viewport of ALL_VIEWPORTS) {
       });
 
       test(`${pg.name} - no elements overflow viewport`, async ({ page }) => {
-        await page.goto(`${BASE_URL}${pg.path}`, { waitUntil: "domcontentloaded" });
+        await gotoResilient(page, `${BASE_URL}${pg.path}`);
         await page.waitForTimeout(1000);
 
         const violations = await checkElementsInViewport(page);
@@ -63,13 +77,13 @@ for (const viewport of ALL_VIEWPORTS) {
       });
 
       test(`${pg.name} - nav is visible`, async ({ page }) => {
-        await page.goto(`${BASE_URL}${pg.path}`, { waitUntil: "domcontentloaded" });
+        await gotoResilient(page, `${BASE_URL}${pg.path}`);
         const nav = page.locator("nav, header").first();
         await expect(nav).toBeVisible();
       });
 
       test(`${pg.name} - h1 heading is visible`, async ({ page }) => {
-        await page.goto(`${BASE_URL}${pg.path}`, { waitUntil: "domcontentloaded" });
+        await gotoResilient(page, `${BASE_URL}${pg.path}`);
         await page.waitForTimeout(1000);
         const h1 = page.locator("h1").first();
         await expect(h1).toBeVisible();
@@ -77,7 +91,7 @@ for (const viewport of ALL_VIEWPORTS) {
     }
 
     test("Homepage - bento cards stay visible after scroll", async ({ page }) => {
-      await page.goto(`${BASE_URL}/`, { waitUntil: "domcontentloaded" });
+      await gotoResilient(page, `${BASE_URL}/`);
       await page.waitForTimeout(1000);
       await page.evaluate(() => window.scrollTo(0, 1800));
       await page.waitForTimeout(800);
@@ -91,7 +105,7 @@ for (const viewport of ALL_VIEWPORTS) {
     });
 
     test("Homepage - CTA button visible", async ({ page }) => {
-      await page.goto(`${BASE_URL}/`, { waitUntil: "domcontentloaded" });
+      await gotoResilient(page, `${BASE_URL}/`);
       await page.waitForTimeout(1000);
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await page.waitForTimeout(800);
