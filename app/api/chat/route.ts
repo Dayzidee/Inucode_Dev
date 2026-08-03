@@ -7,7 +7,7 @@ const generateSystemPrompt = () => {
     (p) => `- ${p.title} (${p.category}): ${p.description}`
   ).join("\n");
   const capabilitiesContext = CAPABILITIES.map(
-    (c) => `- ${c.title} (${c.category}): ${c.description || ""}`
+    (c) => `- ${c.title} (${c.category})`
   ).join("\n");
   const servicesContext = SERVICES.map(
     (s) => `- ${s.title}: ${s.description}`

@@ -9,6 +9,22 @@ type Message = {
   content: string;
 };
 
+/** Lightweight markdown → HTML for AI responses (no external lib) */
+function renderMarkdown(text: string): string {
+  return text
+    // Bold: **text** → <strong>text</strong>
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    // Italic: *text* → <em>text</em> (single asterisk only)
+    .replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, "<em>$1</em>")
+    // Bullet lists: lines starting with - or • → styled li
+    .replace(
+      /^[\-•] (.+)$/gm,
+      '<span class="flex gap-2"><span class="text-neutral-500 flex-shrink-0 mt-0.5">–</span><span>$1</span></span>'
+    )
+    // Preserve newlines as <br />
+    .replace(/\n/g, "<br />");
+}
+
 function TypingDots() {
   return (
     <span className="inline-flex items-center gap-1 py-1">
@@ -186,8 +202,10 @@ export function ChatWidget() {
                         Kota Dev Core
                       </span>
                     </div>
-                    <div className="bg-neutral-900 border border-white/5 text-neutral-200 text-sm p-4 rounded-2xl rounded-tl-sm leading-relaxed whitespace-pre-wrap">
-                      {msg.content || <TypingDots />}
+                    <div className="bg-neutral-900 border border-white/5 text-neutral-200 text-sm p-4 rounded-2xl rounded-tl-sm leading-relaxed">
+                      {msg.content
+                        ? <span dangerouslySetInnerHTML={{ __html: renderMarkdown(msg.content) }} />
+                        : <TypingDots />}
                     </div>
                   </div>
                 ) : (
